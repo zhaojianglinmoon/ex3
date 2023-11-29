@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>综合</title>
+    <meta charset="utf-8" />
+    <style type="text/css">
+      .msg{
+	    width:1000px;
+      	margin:100px auto 0px auto;
+      	color:#ff0000;
+      	text-align: center;
+      }
+      #view_box{
+      	position:relative;
+      	
+	    width:1000px;
+      	height:500px;
+      	margin:10px auto;
+      	
+      	background-color:#000000;
+      	background-image:url("res/11.jpg");
+      	background-position:center;
+      	background-repeat:no-repeat;
+      	background-size:cover;
+      }
+      .btn_list{
+      	position:absolute;
+      	bottom:10px;
+      	
+	    width:100%;
+      }
+      ul{
+      	list-style-type:none;
+	    width:350px;
+      	margin:0px auto;
+      	
+      	display:flex;
+      	align-items:center;
+      }
+      li{
+	    background-color:#3D3D3D;
+      	color:#ffffff;
+      	
+      	width:30px;
+      	height:30px;
+      	line-height:30px;
+      	margin-left:10px;
+      	text-align:center;
+      	
+      	border-radius:30px;
+      	cursor:pointer;
+      	opacity:0.5;
+      }
+      li:nth-of-type(1){
+	    background-color:#10508D;
+      	opacity:1;
+      }
+      p{
+      	text-align: center;
+      }
+    </style>
+    <script type="text/javascript">
+      var index = 1;//图片id
+      window.onload = function(){
+    	  
+    	  //给li添加鼠标点击事件
+    	  for(var i=1;i<=8;i++){
+    		  document.getElementById("li"+i).onclick = function(){
+    	    	  index = this.innerHTML;
+    	    	  setAnimate();
+    		  }
+    	  }
+    	  
+    	  //添加滚轮事件
+    	  document.addEventListener('DOMMouseScroll',mousewheel,false);//firefox
+    	  window.onmousewheel = mousewheel;//chrome
+    	  
+    	  //移动端触屏
+          var startX, startY;
+          document.addEventListener('touchstart',function (e) {
+        	  //开始触屏
+              startX = e.changedTouches[0].pageX;
+              startY = e.changedTouches[0].pageY;
+          }, false);
+          document.addEventListener('touchend',function (e) {
+        	  //结束触屏
+        	  var endX, endY;
+              endX = e.changedTouches[0].pageX;
+              endY = e.changedTouches[0].pageY;
+              
+              if(endX > startX){
+            	  index--;//向左
+              }
+              else if(endX < startX){
+            	  index++;//向右
+              }
+              setAnimate();
+          },false);
+      }
+      
+      //滚轮事件调用函数
+      function mousewheel(e){
+    	  e.preventDefault();//通知浏览器不执行默认的动作
+    	  
+	      if(e.wheelDelta){
+	    	  //IE/Opera/Chrome
+	          if(e.wheelDelta < 0){
+	        	//下
+	        	index++;
+	          }
+	          else{
+	        	//上
+	        	index--;
+	          }
+	      }
+	      else if(e.detail){
+	    	  //Firefox
+	          if(e.detail < 0){
+	        	//上
+	        	index--;
+	          }
+	          else{
+	        	//下
+	        	index++;
+	          }
+	      }
+    	  setAnimate();
+	  }
+      
+      //切换图片
+      function setAnimate(){
+    	  if(index > 9){
+    		  index = 9;
+    	  }
+    	  if(index < 1){
+    		  index = 1;
+    	  }
+    	  
+    	  //设置view_box背景图片
+    	  document.getElementById("view_box").style.backgroundImage = "url('res/1"+index+".jpg')";
+    	  
+    	  //设置li背景色
+    	  for(var i=1;i<=10;i++){
+    		  document.getElementById("li"+i).style.backgroundColor = "#3D3D3D";
+    		  document.getElementById("li"+i).style.opacity = 0.5;
+    	  }
+    	  document.getElementById("li"+index).style.backgroundColor = "#10508D";
+    	  document.getElementById("li"+index).style.opacity = 1;
+      }
+    </script>
+  </head>
+  <body>
+    上
+    <div class="msg">提示：利用鼠标滚轮或触屏切换图片</div>
+    
+    <div id="view_box">
+      <div class="btn_list">
+        <ul>
+          <li id="li1">1</li>
+          <li id="li2">2</li>
+          <li id="li3">3</li>
+          <li id="li4">4</li>
+          <li id="li5">5</li>
+          <li id="li6">6</li>
+          <li id="li7">7</li>
+          <li id="li8">8</li>
+		  <li id="li9">9</li>
+         </ul>
+       </div>
+    </div>
+    <p><a href="index.html">返回首页</a></p>
+  </body>
+</html>
+

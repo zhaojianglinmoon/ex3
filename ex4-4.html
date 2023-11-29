@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>4.4 操纵视频</title>
+    <meta charset="utf-8" />
+    <style>
+    	#main{
+    		width:700px;
+    		margin:0 auto;
+    		text-align: center;
+    	}
+    </style>
+    <script type="text/javascript">
+      function hello1(){
+          document.getElementById("vo").play();
+      }
+      function hello2(){
+          document.getElementById("vo").pause();
+      }
+      function hello3(){
+          document.getElementById("vo").currentTime = 78;
+      }
+      function hello4(){
+          document.getElementById("vo").muted = !document.getElementById("vo").muted;
+      }
+    </script>
+  </head>
+  <body>
+  	<div id="main">
+    
+    <input type="button" value="播放" onclick="hello1()" />
+    <input type="button" value="暂停" onclick="hello2()" />
+    <input type="button" value="设置进度" onclick="hello3()" />
+    <input type="button" value="静音" onclick="hello4()" />
+    
+    <br/><br/>
+    
+    <video id="vo" width="700" controls src="res/16.mp4"></video>
+    <p><a href="index.html">返回首页</a></p>
+    </div>
+  </body>
+</html>
+

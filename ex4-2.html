@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>4.2操纵标签属性</title>
+    <meta charset="utf-8" />
+    <style type="text/css">
+    	#main{
+    		width:800px;
+    		margin:0 auto;
+    		text-align: center;
+    	}
+      #div1{
+          background-color:#5BB1DD;
+          width:800px;
+          height:500px;
+          overflow:hidden;
+      }
+    </style>
+    <script type="text/javascript">
+      var imagePath = "res/12.jpg";
+      var content = "<b>图片没有了？<br/><br/>再点一次试试看...</b>";
+      function hello1(){
+          var str = document.getElementById("myImg").src;
+          document.getElementById("myImg").src = imagePath;
+          imagePath = str;
+      }
+      function hello2(){
+          var width = document.getElementById("myImg").width;
+          document.getElementById("myImg").width = width + 10;
+      }
+      function hello3(){
+          var width = document.getElementById("myImg").width;
+          document.getElementById("myImg").width = width - 10;
+      }
+      function hello4(){
+          var left = document.getElementById("myImg").offsetLeft;
+          var top = document.getElementById("myImg").offsetTop;
+          var width = document.getElementById("myImg").offsetWidth;
+          var height = document.getElementById("myImg").offsetHeight;
+          alert("左边距："+left+"，上边距："+top+"，宽度："+width+"，高度："+height);
+      }
+      function hello5(){
+          var str = document.getElementById("div1").innerHTML;
+          document.getElementById("div1").innerHTML = content;
+          content = str;
+      }
+    </script>
+  </head>
+  <body>
+<div id="main">
+    <input type="button" value="更换图片" onclick="hello1()" />
+    <input type="button" value="图片放大" onclick="hello2()" />
+    <input type="button" value="图片缩小" onclick="hello3()" />
+    <input type="button" value="图片参数" onclick="hello4()" />
+    <input type="button" value="更改div内容" onclick="hello5()" />
+    
+    <br/><br/>
+    
+    <div id="div1">
+    	<img id="myImg" src="res/11.jpg" width="700" />    	
+    </div>
+    <a href="index.html">返回首页</a>
+</div>    
+  </body>
+</html>
+

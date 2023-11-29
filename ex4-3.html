@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>图片列表</title>
+    <meta charset="utf-8" />
+    <style type="text/css">
+      html,body{
+	    width:100%;
+      	height:100%;
+      	margin:0px;      	
+      	overflow:hidden;
+      }
+      p{
+      	text-align: center;
+      	margin:0;
+      }
+      /* 包含ul的div */
+      .image_list{
+	    width:100%;
+      height:95%;      	
+      	display:flex;
+      	align-items:center;
+      }
+      ul{
+	    list-style-type:none;
+      	
+      	margin:0px auto;
+      	padding:0px;      	
+      	width:80%;
+      	height:80%;
+      	
+      	display:flex;
+      	justify-content:space-between;
+      }
+      li{
+      	position:relative;
+      	
+	    width:12%;
+      	height:100%;
+      	
+      	border-radius:25px;
+      	
+      	background-position:center;
+      	background-repeat:no-repeat;
+      	background-size:auto 100%;
+      	
+      	opacity:0.7;
+      }
+      li:hover{
+	    opacity:1;
+      }
+      /* 关闭按扭 */
+      .close_btn{
+	    position:absolute;
+      	right:30px;
+      	top:30px;
+      	
+      	cursor:pointer;
+      	
+      	display:none;
+      }
+      
+      /* 鼠标点击时，切换的样式 */
+      .active{
+	    width:100%;
+	  }
+	  .active .close_btn{
+	    display:block;
+	  }
+	  .hide li:not(.active){
+	    height:0%;
+	    width:0%;
+	  }
+    </style>
+    <script type="text/javascript">
+      function init(){
+    	  //初始化li
+    	  for(var i=1;i<=9;i++){
+    		  
+    		  //为li添加背景图片(操纵background-image样式)
+    		  document.getElementById("li"+i).style.backgroundImage = "url('res/1"+i+".jpg')";
+    		  //为li设置title属性
+      	      document.getElementById("li"+i).title = "点击查看大图";
+    		  
+    		  //为li添加鼠标点击事件(操纵className属性)
+    		  document.getElementById("li"+i).onclick = function(){
+    			  this.className = "active";
+    			  document.getElementById("image_ul").className = "hide";
+    		  }
+    	  }
+    	  
+    	  //为关闭按扭添加鼠标点击事件(操纵className属性)
+		  var closeBtnList = document.getElementsByClassName("close_btn");
+		  for(var i=0;i<closeBtnList.length;i++){
+			  closeBtnList[i].onclick = function(e){
+				  e.stopPropagation();//阻止事件冒泡
+				  document.getElementsByClassName("active")[0].className = "";
+				  document.getElementById("image_ul").className = "";
+			  }
+		  }
+      }
+    </script>
+  </head>
+  <body onload="init()">    
+    <div class="image_list">
+      <ul id="image_ul">
+        <li id="li1"><img class="close_btn" src="res/close_btn.png" /></li>
+        <li id="li2"><img class="close_btn" src="res/close_btn.png" /></li>
+        <li id="li3"><img class="close_btn" src="res/close_btn.png" /></li>
+        <li id="li4"><img class="close_btn" src="res/close_btn.png" /></li>
+        <li id="li5"><img class="close_btn" src="res/close_btn.png" /></li>
+        <li id="li6"><img class="close_btn" src="res/close_btn.png" /></li>
+        <li id="li7"><img class="close_btn" src="res/close_btn.png" /></li>
+        <li id="li8"><img class="close_btn" src="res/close_btn.png" /></li>
+		<li id="li9"><img class="close_btn" src="res/close_btn.png" /></li>
+      </ul>       
+    </div> 
+     <p><a href="index.html">返回首页</a></p>
+  </body>
+</html>
+
